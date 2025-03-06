@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "74175272834",
+    "project_id": "ctucl-manager",
+    "storage_bucket": "ctucl-manager.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:74175272834:android:8a4efcc48386e77417e19b",
+        "android_client_info": {
+          "package_name": "com.example.ctucl_mobile_manager"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDFQZfykaXw86Nw-fiNUDn6vXZyZMUXzT8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

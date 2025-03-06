@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class AuthProvider extends ChangeNotifier {
+class AuthProviderFlutter extends ChangeNotifier {
   Map<String, dynamic> _userData = {
     'username':'',
     'email':'',
@@ -18,7 +18,7 @@ class AuthProvider extends ChangeNotifier {
 
 
   // Método para iniciar sesión
-  void login(Map<String,dynamic> queryResponse) {
+  void setLogin(Map<String,dynamic> queryResponse) {
     _userData['username'] = queryResponse['username'];
     _userData['email'] = queryResponse['email'];
     _userData['phone'] = queryResponse['phone'];
@@ -27,7 +27,7 @@ class AuthProvider extends ChangeNotifier {
     _userData['name'] = queryResponse['name'];
     _userData['lastname'] = queryResponse['lastname'];
     _userData['token'] = queryResponse['token'];
-    notifyListeners(); // Notifica a los widgets que el estado ha cambiado
+    print(_userData);
   }
 
   // Método para cerrar sesión

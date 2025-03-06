@@ -1,8 +1,11 @@
 import 'package:ctucl_mobile_manager/main.dart';
-import 'package:ctucl_mobile_manager/presentation/screens/home_screen.dart';
+import 'package:ctucl_mobile_manager/providers/auth_provider.dart';
+import 'package:ctucl_mobile_manager/services/api_service.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import 'home_screen.dart';
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -11,7 +14,7 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStateMixin {
-
+  final ApiService apiService = ApiService();
   final _formKey = GlobalKey<FormState>();
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -25,26 +28,41 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
 
 
   Future<void> signIn() async {
+
     if (!_formKey.currentState!.validate()) return;
     setState(() {
       _isLoading = true;
     });
 
     try {
-      await _auth.signInWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
+      final String email  = _emailController.text.trim();
+      final String password = _passwordController.text.trim();
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: email,
+        password: password,
       );
-      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen()));
+      String? token = await userCredential.user?.getIdToken();
+      var response  = await apiService.loginQuery(email,password,token! , context);
+      final Map<String,dynamic> data_formated ={
+        'username':response['username'],
+        'email':response['email'],
+        'phone':response['phone'],
+        'register':response['register'],
+        'address':response['address'],
+        'name':response['name'],
+        'lastname':response['lastname'],
+        'token':token
+      };
+      Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(response: data_formated)));
+      
       if (mounted) {
         context.showSnackBar('Successfully signed in!');
-        final autProvider = Provider.of<AuthProvider>(context, listen: false);
-        au
       }
     } catch (e) {
       if (mounted) context.showSnackBar('Error al iniciar sesión: ${e.toString()}', isError: true);
     }finally {
       if (mounted) {
+
         setState(() {
           _isLoading = false;
         });

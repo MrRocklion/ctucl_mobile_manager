@@ -14,9 +14,8 @@ class MyApp extends StatelessWidget {
       theme: materialTheme.light(),
       darkTheme: materialTheme.dark(),
       themeMode: ThemeMode.system,
-      initialRoute: '/automated',
+      initialRoute: '/login',
       routes: {
-        '/': (context) => HomeScreen(),
         '/login':(context) => LoginScreen(),
         '/automated/':(context) => MenuAutomated(),
 

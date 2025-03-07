@@ -19,6 +19,7 @@ class AuthProviderFlutter extends ChangeNotifier {
 
   // Método para iniciar sesión
   void setLogin(Map<String,dynamic> queryResponse) {
+    _userData['id'] = queryResponse['id'];
     _userData['username'] = queryResponse['username'];
     _userData['email'] = queryResponse['email'];
     _userData['phone'] = queryResponse['phone'];

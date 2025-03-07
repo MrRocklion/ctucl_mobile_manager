@@ -43,14 +43,16 @@ class _LoginScreenState extends State<LoginScreen> with SingleTickerProviderStat
       );
       String? token = await userCredential.user?.getIdToken();
       var response  = await apiService.loginQuery(email,password,token! , context);
+      final response_result = response['result']['localData'];
       final Map<String,dynamic> data_formated ={
-        'username':response['username'],
-        'email':response['email'],
-        'phone':response['phone'],
-        'register':response['register'],
-        'address':response['address'],
-        'name':response['name'],
-        'lastname':response['lastname'],
+        'id':response_result['id'],
+        'username':response_result['username'],
+        'email':response_result['email'],
+        'phone':response_result['phone'],
+        'register':response_result['register'],
+        'address':response_result['address'],
+        'name':response_result['name'],
+        'lastname':response_result['lastname'],
         'token':token
       };
       Navigator.pushReplacement(context, MaterialPageRoute(builder: (context) => HomeScreen(response: data_formated)));

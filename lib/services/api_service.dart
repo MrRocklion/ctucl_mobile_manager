@@ -1,19 +1,16 @@
 import 'dart:convert';
-import 'package:ctucl_mobile_manager/providers/auth_provider.dart';
-import 'package:flutter/src/widgets/framework.dart';
+
 import 'package:http/http.dart' as http;
-import 'package:provider/provider.dart';
+
 
 
 class ApiService {
   //static const String apiUrl = "http://localhost:4000";
   //static const String apiUrl = "http://192.168.20.245:4000";
   static const String apiUrl = "https://ctucloja.com";
-  Future<dynamic> mqttQuery(Map<String, dynamic> params, context) async {
+  Future<dynamic> mqttQuery(Map<String, dynamic> params,String token, context) async {
 
     try {
-      final authParams = Provider.of<AuthProviderFlutter>(context, listen: false);
-      String? token = authParams.userData['token'];
       if (token == null) {
         throw Exception("No token found in storage");
       }
@@ -27,7 +24,7 @@ class ApiService {
         body: jsonEncode(params),
       );
 
-      if (response.statusCode == 200) {
+      if (response.statusCode == 201) {
         return jsonDecode(response.body);
       } else {
         throw Exception("Error en la solicitud: ${response.statusCode}");

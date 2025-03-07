@@ -24,12 +24,12 @@ class _MenuAutomatedState extends State<MenuAutomated> {
   @override
   Widget build(BuildContext context) {
     final routes = [
-      {'title': 'Consorcio', 'description': 'Prototipo de pruebas',  'topic': 'desarrollo'},
-      {'title': 'Paltas Sur A Norte', 'description': 'Calle catacocha',  'topic': 'paltas_sn'},
-      {'title': 'Valle Sur a Norte', 'description': 'Cooperativa Jep',  'topic': 'valle_sn'},
-      {'title': 'Valle Norte a Sur', 'description': 'Zona Militar',  'topic': 'valle_ns'},
-      {'title': 'Jipiro Sur a Norte', 'description': 'Parada Bajada',  'topic': 'jipiro_sn'},
-      {'title': 'Jipiro Norte a Sur', 'description': 'Parada Subida',  'topic': 'jipiro_ns'},
+      {'title': 'Consorcio', 'description': 'Prototipo de pruebas',  'topic': 'desarrollo/commands'},
+      {'title': 'Paltas Sur A Norte', 'description': 'Calle catacocha',  'topic': 'paltas_sn//commands'},
+      {'title': 'Valle Sur a Norte', 'description': 'Cooperativa Jep',  'topic': 'valle_sn/commands'},
+      {'title': 'Valle Norte a Sur', 'description': 'Zona Militar',  'topic': 'valle_ns/commands'},
+      {'title': 'Jipiro Sur a Norte', 'description': 'Parada Bajada',  'topic': 'jipiro_sn/commands'},
+      {'title': 'Jipiro Norte a Sur', 'description': 'Parada Subida',  'topic': 'jipiro_ns/commands'},
       {'title': 'Coliseo', 'description': 'Coliseo Municipal', 'topic': 'coliseo'},
     ];
 
